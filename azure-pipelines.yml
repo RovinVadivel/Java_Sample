@@ -47,7 +47,7 @@ steps:
     destinationFolder: 'pipeline'
     cleanDestinationFolder: false
 - script: |
-      java -jar pipeline-scan.jar -vid "$(vid)" -vkey "$(vkey)" -f '$(System.DefaultWorkingDirectory)/target/verademo.war' --fail_on_severity="Very High, High" --fail_on_cwe="80"
+      java -jar pipeline-scan.jar -vid "$(vid)" -vkey "$(vkey)" -f '$(System.DefaultWorkingDirectory)/target/verademo.war'
   env:
     VERACODE_API_ID: $(VERACODE_API_ID)
     VERACODE_API_KEY: $(VERACODE_API_KEY)
