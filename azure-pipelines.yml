@@ -28,15 +28,15 @@ steps:
     breakPipeline: false
     baselineFileGeneration: false
 
-#- task: Veracode@3
-#  displayName: 'Upload and scan: $(System.DefaultWorkingDirectory)'
-#  inputs:
-#    ConnectionDetailsSelection: Credentials
-#    apiId: '$(vid)'
-#    apiKey: '$(vkey)'
-#    veracodeAppProfile: 'AzureDevOps-VeraDemo'
-#    filepath: '$(System.DefaultWorkingDirectory)/target/verademo.war'
-#    importResults: true    
+- task: Veracode@3
+  displayName: 'Upload and scan: $(System.DefaultWorkingDirectory)'
+  inputs:
+    ConnectionDetailsSelection: Credentials
+    apiId: '$(vid)'
+    apiKey: '$(vkey)'
+    veracodeAppProfile: 'AzureDevOps-VeraDemo'
+    filepath: '$(System.DefaultWorkingDirectory)/target/verademo.war'
+    importResults: true    
 
 - script: |
     curl -O -L https://downloads.veracode.com/securityscan/pipeline-scan-LATEST.zip
