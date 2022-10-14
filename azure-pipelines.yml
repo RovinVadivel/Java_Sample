@@ -28,15 +28,15 @@ steps:
     breakPipeline: false
     baselineFileGeneration: false
 
-- task: Veracode@3
-  displayName: 'Upload and scan: $(System.DefaultWorkingDirectory)'
-  inputs:
-    ConnectionDetailsSelection: Credentials
-    apiId: '$(vid)'
-    apiKey: '$(vkey)'
-    veracodeAppProfile: 'AzureDevOps-VeraDemo'
-    filepath: '$(System.DefaultWorkingDirectory)/target/verademo.war'
-    importResults: true    
+#- task: Veracode@3
+#  displayName: 'Upload and scan: $(System.DefaultWorkingDirectory)'
+#  inputs:
+#    ConnectionDetailsSelection: Credentials
+#    apiId: '$(vid)'
+#    apiKey: '$(vkey)'
+#    veracodeAppProfile: 'AzureDevOps-VeraDemo'
+#    filepath: '$(System.DefaultWorkingDirectory)/target/verademo.war'
+#    importResults: true    
 
 - script: |
     curl -O -L https://downloads.veracode.com/securityscan/pipeline-scan-LATEST.zip
@@ -47,7 +47,7 @@ steps:
     destinationFolder: 'pipeline'
     cleanDestinationFolder: false
 - script: |
-      java -jar pipeline-scan.jar --veracode_api_id "$(VERACODE_API_ID)" --veracode_api_key "$(VERACODE_API_KEY)" --file "example.jar" --fail_on_severity="Very High, High" --fail_on_cwe="80"
+      java -jar pipeline-scan.jar --veracode_api_id "$(vid)" --veracode_api_key "$(vkey)" --file "verademo.war" --fail_on_severity="Very High, High" --fail_on_cwe="80"
   env:
     VERACODE_API_ID: $(VERACODE_API_ID)
     VERACODE_API_KEY: $(VERACODE_API_KEY)
